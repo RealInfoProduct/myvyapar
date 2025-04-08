@@ -23,6 +23,11 @@ export const navItems: NavItem[] = [
     route: '/master/sale',
   },
   {
+    displayName: 'Expenses',
+    iconName: 'receipt-tax',
+    route: '/master/expenses',
+  },
+  {
     displayName: 'Product Master',
     iconName: 'brand-asana',
     route: '/master/productmaster',
@@ -36,12 +41,5 @@ export const navItems: NavItem[] = [
     displayName: 'Firm Master',
     iconName: 'building-store',
     route: '/master/firmmaster',
-  },
-  {
-    displayName: 'Expenses',
-    iconName: 'receipt-tax',
-    route: '/master/expenses',
-  },
-
-  
+  }, 
 ]
