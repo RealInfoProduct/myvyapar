@@ -10,6 +10,11 @@
     }
 }
 
+.error-message {
+    position: absolute;
+    left: 0;
+}
+
 .productButton {
     display: flex;
     align-items: center;
@@ -55,13 +60,10 @@
 
 
 @media (max-width: 1200px) {
-
-    
     ::ng-deep .mat-mdc-tab-header {
         max-width: 100% !important;
     }
 
-  
     .row {
         flex-direction: column;
 
@@ -93,13 +95,10 @@
 }
 
 @media (max-width: 768px) {
-
-    
     .mat-card-content {
         padding: 16px !important;
     }
 
-   
     .action-link {
         display: flex;
         flex-direction: column;
@@ -110,7 +109,6 @@
         }
     }
 
-    
     .payment-date {
         margin-top: 16px;
         width: 100%;
@@ -123,8 +121,6 @@
 }
 
 @media (max-width: 576px) {
-
- 
     .mat-form-field {
         margin-top: 4px !important;
         margin-bottom: 8px !important;

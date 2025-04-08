@@ -3,7 +3,7 @@
   <form [formGroup]="amountForm">
     <div class="row align-items-baseline">
 
-      <div class="col-12 col-sm-12 col-md-4">
+      <div class="col-12 col-sm-12 col-md-5">
         <div>
           <mat-label class="f-s-13 f-w-600">
             Final Total : <span class="f-s-13 f-w-600">{{amountdata.formattedRoundedAmount }}</span>
@@ -37,7 +37,7 @@
         </mat-form-field>
       </div>
 
-      <div class="col-12 col-sm-12 col-md-3" *ngIf="!amountdata.isPayment">
+      <div class="col-12 col-sm-12 col-md-4" *ngIf="!amountdata.isPayment">
         <mat-form-field appearance="outline" class="w-100 m-t-10">
           <mat-label>Payment Date</mat-label>
           <input matInput formControlName="paymentDate" [matDatepicker]="Date" placeholder="Enter payment date">
@@ -46,7 +46,7 @@
         </mat-form-field>
       </div>
 
-      <div class="col-12 col-sm-12 col-md-4" *ngIf="!amountdata.isPayment">
+      <div class="col-12 col-sm-12 col-md-3" *ngIf="!amountdata.isPayment">
         <button mat-flat-button 
          color="primary" (click)="addPayment()">
           Add Payment

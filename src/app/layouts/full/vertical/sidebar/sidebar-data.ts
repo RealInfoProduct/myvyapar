@@ -39,7 +39,7 @@ export const navItems: NavItem[] = [
   },
   {
     displayName: 'Expenses',
-    iconName: 'building-store',
+    iconName: 'receipt-tax',
     route: '/master/expenses',
   },
 

@@ -112,15 +112,16 @@
                 </ng-container>
 
                 <ng-container matColumnDef="finalSubAmount">
-                    <th mat-header-cell *matHeaderCellDef class="f-s-16 f-w-600">{{'salelist.FinalAmount' |
-                        translate}}</th>
+                    <th mat-header-cell *matHeaderCellDef class="f-s-16 f-w-600">
+                        {{'salelist.FinalAmount' | translate}}
+                    </th>
                     <td mat-cell *matCellDef="let element">
                         <div class="d-flex align-items-center">
                             <div class="m-l-16">
-                                <p class="mat-subtitle-1 f-s-16 m-t-0"
-                                    [class.receivePayment]="element.formattedRoundedAmount === calculateTotalReceivedPayment(element.receivePayment)">
+                                <p class="mat-subtitle-1 f-s-16 m-t-0" [class.receivePayment]="element.isPayment">
                                     {{ element.formattedRoundedAmount }}
                                 </p>
+                               
                             </div>
                         </div>
                     </td>

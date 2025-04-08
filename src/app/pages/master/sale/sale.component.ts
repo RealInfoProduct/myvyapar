@@ -232,13 +232,17 @@ export class amountlistdialog implements OnInit {
     private _snackBar: MatSnackBar,
     private loaderService: LoaderService,
   ) {
-    
     this.amountDataSource = amountdata.receivePayment
-    amountdata['pendingAmount'] = (amountdata.formattedRoundedAmount) - (amountdata.receivePayment.reduce((total: any, payment: any) => total + payment.paymentAmount, 0))
+    const totalFormatted = this.removeComma(amountdata.formattedRoundedAmount);
+    const receivedAmount = amountdata.receivePayment.reduce((total: any, payment: any) => total + payment.paymentAmount, 0);
+
+    amountdata['pendingAmount'] = totalFormatted - receivedAmount;
+    amountdata['pendingAmountFormatted'] = this.formatNumber(amountdata['pendingAmount']);
   }
 
   ngOnInit(): void {
     this.buildForm()
+
   }
 
   buildForm() {
@@ -254,7 +258,12 @@ export class amountlistdialog implements OnInit {
       paymentAmount: this.amountForm.value.paymentAmount,
     }
     this.amountdata.receivePayment.push(paymentData)
-    const pendingTotalAmount = (this.amountdata.formattedRoundedAmount) - (this.amountdata.receivePayment.reduce((total: any, payment: any) => total + payment.paymentAmount, 0))
+    const totalFormatted = this.removeComma(this.amountdata.formattedRoundedAmount);
+    const totalReceived = this.amountdata.receivePayment.reduce((total: any, payment: any) => total + payment.paymentAmount, 0);
+
+    const pendingTotalAmount = totalFormatted - totalReceived;
+    this.amountdata.pendingAmount = pendingTotalAmount;
+    this.amountdata.pendingAmountFormatted = this.formatNumber(pendingTotalAmount);
 
     if (pendingTotalAmount === 0) {
       this.amountdata.isPayment = true
@@ -298,12 +307,23 @@ export class amountlistdialog implements OnInit {
         this.amountdata = res.find((id: any) =>
           id.id === this.amountdata.id
         )
+        this.amountDataSource = this.amountdata.receivePayment;
 
-        this.amountDataSource = this.amountdata.receivePayment
-        this.amountdata['pendingAmount'] = (this.amountdata.formattedRoundedAmount) - (this.amountdata.receivePayment.reduce((total: any, payment: any) => total + payment.paymentAmount, 0))
+        const totalFormatted = this.removeComma(this.amountdata.formattedRoundedAmount);
+        const received = this.amountdata.receivePayment.reduce((total: any, payment: any) => total + payment.paymentAmount, 0);
+
+        this.amountdata.pendingAmount = totalFormatted - received;
+        this.amountdata.pendingAmountFormatted = this.formatNumber(this.amountdata.pendingAmount);
         this.loaderService.setLoader(false)
-        console.log("this.amountdata",this.amountdata);
       }
     })
+  }
+
+  removeComma(value: any): number {
+    return Number(String(value).replace(/,/g, ''));
+  }
+
+  formatNumber(value: number): string {
+    return value.toLocaleString('en-IN');
   }
 }
